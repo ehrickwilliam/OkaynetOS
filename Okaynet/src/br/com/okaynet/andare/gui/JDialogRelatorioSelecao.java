@@ -9,7 +9,6 @@ import br.com.okaynet.andare.conexao.Data;
 import br.com.okaynet.andare.model.ClienteFisico;
 import br.com.okaynet.andare.model.Pessoa;
 import br.com.okaynet.andare.model.Usuarios;
-import br.com.okaynet.andare.testes.testeRelatorio;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -128,9 +127,9 @@ public class JDialogRelatorioSelecao extends javax.swing.JDialog {
             }
 
         } catch (JRException ex) {
-            Logger.getLogger(testeRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+            
         } catch (SQLException ex) {
-            Logger.getLogger(testeRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 
 
@@ -149,9 +148,9 @@ public class JDialogRelatorioSelecao extends javax.swing.JDialog {
             }
 
         } catch (JRException ex) {
-            Logger.getLogger(testeRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+            
         } catch (SQLException ex) {
-            Logger.getLogger(testeRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -19,8 +19,6 @@ import br.com.okaynet.andare.model.Funcionario;
 import br.com.okaynet.andare.model.OrdemServico;
 import br.com.okaynet.andare.model.Pessoa;
 import br.com.okaynet.andare.model.Usuarios;
-import br.com.okaynet.andare.testes.testeParametro;
-import br.com.okaynet.andare.testes.testeRelatorio;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -583,11 +581,12 @@ public class JDialogPesquisaOrdemVencidas extends javax.swing.JDialog {
                 viewer.getContentPane().add(jrviewer.getContentPane());
                 viewer.setVisible(true);
             } catch (JRException ex) {
-                Logger.getLogger(testeParametro.class.getName()).log(Level.SEVERE, null, ex);
+                
+                
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(testeRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+           
         }
     }
 }
