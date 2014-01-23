@@ -212,7 +212,7 @@ public class JDialogViewOrdemServico extends javax.swing.JDialog {
         jComboBoxCidade.setEnabled(false);
         getContentPane().add(jComboBoxCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 120, -1));
 
-        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aguardando Pagamento", "Pagamento Concluido", "Pagamento em Cheque" }));
+        jComboBoxStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aguardando Pagamento", "Pagamento Concluido", "Pagamento em Cheque", "Pagamento em Boleto" }));
         jComboBoxStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxStatusActionPerformed(evt);
