@@ -56,7 +56,6 @@ public class JDialogCadastroOrdem extends javax.swing.JDialog {
         novo();
         Usuarios autenticado = (Usuarios) Data.hash.get("usuario");
 
-
     }
 
     /**
@@ -930,8 +929,18 @@ public class JDialogCadastroOrdem extends javax.swing.JDialog {
             new DaoOrdemServico().persistir(ordem);
             TransactionManager.commit();
             novo();
-            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso !");
-             ReportManage report = new ReportManage();
+            String fixo = String.valueOf(endereco.getTelefone1().charAt(5));
+            if (!fixo.equals("3")) {
+                try {
+                    String celular = endereco.getTelefone1();
+                    List<OrdemServico> obterUltima = new DaoOrdemServico().obterUltima();
+                    String mensagem = "OKAYNET Informa: Voce possui uma nova Ordem de Servico N" + obterUltima.get(0).getId() + ". Agradecemos desde ja a sua preferencia.";
+                    Util.sms(celular.replace("(", "").replace(")", "").replace(" ", "").replace("-", ""), mensagem);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Erro ao avisar o cliente via SMS !");
+                }
+            }
+            ReportManage report = new ReportManage();
             try {
                 report.relatorioPronto("reportOS", "Ordem de serviço");
             } catch (JRException ex) {

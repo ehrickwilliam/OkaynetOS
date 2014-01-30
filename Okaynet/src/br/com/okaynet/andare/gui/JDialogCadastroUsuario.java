@@ -299,7 +299,6 @@ public class JDialogCadastroUsuario extends javax.swing.JDialog {
                         Data.hash.remove("usuario");
                         Data.hash.put("usuario", usuario);
                         limparCampos();
-                        JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso !");
                     } catch (RuntimeException ex) {
                         TransactionManager.rollback();
                         JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao gravar os dados");

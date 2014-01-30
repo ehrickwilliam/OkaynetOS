@@ -51,7 +51,6 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
         preencher();
         Usuarios autenticado = (Usuarios) Data.hash.get("usuario");
 
-
     }
 
     /**
@@ -801,7 +800,7 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
 
     private void salvar() {
         if (validaCamposEmBranco() && verificarQtdeDeCaracteresItens()) {
-            
+
             OrdemServico ordem = new OrdemServico();
             ordem.setId(Integer.parseInt(jTextFieldCod.getText()));
             ordem.setCliente((Pessoa) jComboBoxCliente.getSelectedItem());
@@ -907,7 +906,20 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
             TransactionManager.beginTransaction();
             new DaoOrdemServico().persistir(ordem);
             TransactionManager.commit();
-            JOptionPane.showMessageDialog(rootPane, "Registro alterado com sucesso !");
+
+            if (jComboBoxStatusServico.getSelectedItem().equals("Concluido")) {
+                String fixo = String.valueOf(endereco.getTelefone1().charAt(5));
+                if (!fixo.equals("3")) {
+                    try {
+                        String celular = endereco.getTelefone1();
+                        String mensagem = "OKAYNET Informa: Ordem de Servico N" + jTextFieldCod.getText() + " esta concluida e aguardando a retirada. Agradecemos desde ja a sua preferencia.";
+                        Util.sms(celular.replace("(", "").replace(")", "").replace(" ", "").replace("-", ""), mensagem);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(rootPane, "Erro ao avisar o cliente via SMS !");
+                    }
+                }
+            }
+            
             this.dispose();
 
         } else {
@@ -961,7 +973,6 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
 //        } else {
 //            jTextFieldComplemento.setBackground(Color.white);
 //        }
-
         if ("     -   ".equals(jFormattedTextFieldCep.getText())) {
             jFormattedTextFieldCep.setBackground(color);
             flag = 1;
@@ -1081,7 +1092,7 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
                     jComboBoxFuncionarios.setSelectedItem(ordem.getFuncionario());
                     jComboBoxCliente.setSelectedItem(ordem.getCliente());
                     jTextFieldValor.setText(String.valueOf(ordem.getValorTotal()));
-                     jComboBoxQuantParcelas.setSelectedIndex(ordem.getParcelas()-1);
+                    jComboBoxQuantParcelas.setSelectedIndex(ordem.getParcelas() - 1);
                     jComboBoxParcelasRest.setSelectedIndex((ordem.getParcelasRestantes() - 1));
                     jTextFieldJuros.setText(String.valueOf(ordem.getJuros()));
                     jTextFieldDeslocamento.setText(String.valueOf(ordem.getDeslocamento()));
@@ -1091,7 +1102,7 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
                     jTextFieldSerie.setText(ordem.getSerie());
                     jTextAreaProblema.setText(ordem.getProblemaInformado());
                     jTextAreaAcessorios.setText(ordem.getAcessorio());
-                    
+
                     jTextFieldItem1.setText(ordem.getItem1());
                     jTextFieldItem2.setText(ordem.getItem2());
                     jTextFieldItem3.setText(ordem.getItem3());
@@ -1116,7 +1127,6 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
                     } else {
                         jTextFieldValor4.setText(null);
                     }
-
 
                     jTextFieldEndereco.setText(ordem.getEndereco().getLogradouro());
                     jFormattedTextFieldNumero.setText(String.valueOf(ordem.getEndereco().getNumero()));
@@ -1163,7 +1173,7 @@ public class JDialogCadastroOrdemPopUp extends javax.swing.JDialog {
         }.start();
     }
 
-   private void calcularValorTotal() {
+    private void calcularValorTotal() {
         double valor1 = 0.0;
         double valor2 = 0.0;
         double valor3 = 0.0;

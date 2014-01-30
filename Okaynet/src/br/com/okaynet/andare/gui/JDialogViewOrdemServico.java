@@ -950,7 +950,20 @@ public class JDialogViewOrdemServico extends javax.swing.JDialog {
             TransactionManager.beginTransaction();
             new DaoOrdemServico().persistir(ordem);
             TransactionManager.commit();
-            JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso !");
+
+            if (jComboBoxStatusServico.getSelectedItem().equals("Concluido")) {
+                String fixo = String.valueOf(endereco.getTelefone1().charAt(5));
+                if (!fixo.equals("3")) {
+                    try {
+                        String celular = endereco.getTelefone1();
+                        String mensagem = "OKAYNET Informa: Ordem de Servico N" + jTextFieldCod.getText() + " esta concluida e aguardando a retirada. Agradecemos desde ja a sua preferencia.";
+                        Util.sms(celular.replace("(", "").replace(")", "").replace(" ", "").replace("-", ""), mensagem);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(rootPane, "Erro ao avisar o cliente via SMS !");
+                    }
+                }
+            }
+
             this.dispose();
 
         } else {

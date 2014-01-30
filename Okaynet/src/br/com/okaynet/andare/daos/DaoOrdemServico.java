@@ -37,6 +37,17 @@ public class DaoOrdemServico extends DaoGenerics<OrdemServico> {
         lista = query.list();
         return lista;
     }
+    
+        public List<OrdemServico> obterUltima() {
+        List<OrdemServico> lista = null;
+
+
+        Query query = session.createQuery("From "
+                + alvo.getSimpleName()
+                + " ORDER BY id DESC");
+        lista = query.list();
+        return lista;
+    }
 
     public List<OrdemServico> obterVencidas() {
         List<OrdemServico> lista = null;

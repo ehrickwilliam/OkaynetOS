@@ -3,9 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroFuncionario.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/testes/TesteIp.java</file>
             <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroOrdemPopUp.java</file>
             <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogViewOrdemServico.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroClienteJuridico.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroClienteFisicoPopUp.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroUsuarioPopUp.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroClienteJuridicoPopUp.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JFramePrincipal.java</file>
             <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroOrdem.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroFuncionarioPopUp.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/gui/JDialogCadastroUsuario.java</file>
+            <file>file:/C:/Users/Erick/Documents/GitHub/OkaynetOS/Okaynet/src/br/com/okaynet/andare/bibliotecas/Util.java</file>
         </group>
     </open-files>
 </project-private>

@@ -21,6 +21,7 @@ import br.com.okaynet.andare.model.Pessoa;
 import br.com.okaynet.andare.model.Usuarios;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.SocketException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -55,7 +56,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         initComponents();
         Usuarios autenticado = (Usuarios) Data.hash.get("usuario");
-        jLabelAdmin.setText("Logado como: " + autenticado.getUsuario());
+        try {
+            jLabelAdmin.setText(Util.saudacao()+" " + autenticado.getUsuario()+" "+Util.meuIp());
+        } catch (SocketException ex) {
+            Logger.getLogger(JFramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         popularTabelaNaoConcluidas();
         popularTabelaNaoRecebidas();
 

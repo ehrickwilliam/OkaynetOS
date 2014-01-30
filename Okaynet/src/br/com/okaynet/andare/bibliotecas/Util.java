@@ -1,5 +1,7 @@
 package br.com.okaynet.andare.bibliotecas;
 
+import br.com.facilitamovel.bean.SmsSimples;
+import br.com.facilitamovel.service.SendMessage;
 import br.com.okaynet.andare.conexao.HibernateConfiguration;
 import br.com.okaynet.andare.daos.DaoOrdemServico;
 import java.awt.Component;
@@ -7,6 +9,8 @@ import java.awt.Image;
 import static java.lang.Thread.sleep;
 import java.math.BigInteger;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,6 +19,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -23,7 +29,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -315,6 +320,48 @@ public class Util {
             pb.start();
         } catch (Exception exc) {
             JOptionPane.showMessageDialog(null, "Aconteceu algo inesperado ao executar o Backup!");
+        }
+    }
+
+    public static void sms(String telefone, String mensagem) throws Exception {
+        // Simple Send
+        SmsSimples sms = new SmsSimples();
+        sms.setUser("ehrickwilliam");
+        sms.setPassword("1092xdrtfc10");
+        sms.setDestinatario(telefone);
+        sms.setMessage(mensagem);
+        SendMessage.simpleSend(sms);
+    }
+
+    public static String meuIp() throws SocketException {
+        Enumeration e;
+
+        e = NetworkInterface.getNetworkInterfaces();
+        while (e.hasMoreElements()) {
+            NetworkInterface i = (NetworkInterface) e.nextElement();
+            Enumeration ds = i.getInetAddresses();
+            while (ds.hasMoreElements()) {
+                InetAddress myself = (InetAddress) ds.nextElement();
+                if (!myself.isLoopbackAddress() && myself.isSiteLocalAddress()) {
+                    return "| Logado via: " + myself.getHostAddress();
+                }
+            }
+        }
+        return "";
+    }
+
+    public static String saudacao() {
+
+        Calendar cal = new GregorianCalendar();
+        int year = cal.get(Calendar.HOUR_OF_DAY);
+        System.out.println(year);
+
+        if (year > 1 && year < 12) {
+            return "Bom dia";
+        } else if (year > 13 && year < 18) {
+           return "Boa tarde";
+        } else {
+           return "Boa noite";
         }
     }
 }

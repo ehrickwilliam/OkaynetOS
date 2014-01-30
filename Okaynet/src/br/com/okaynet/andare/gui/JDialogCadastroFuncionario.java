@@ -447,7 +447,7 @@ public class JDialogCadastroFuncionario extends javax.swing.JDialog {
         jTextFieldEmail.setText(null);
         jTextFieldEndereco.setText(null);
         jTextFieldNome.setText(null);
-        jFormattedTextFieldCep.setText(null);
+        jFormattedTextFieldCep.setText("85440-000");
         jFormattedTextFieldCpf.setText(null);
         jFormattedTextFieldDataNascimento.setText(null);
         jFormattedTextFieldNumero.setText(null);
@@ -495,7 +495,6 @@ public class JDialogCadastroFuncionario extends javax.swing.JDialog {
                 new DaoFuncionario().persistir(funcionario);
                 TransactionManager.commit();
                 limparCampos();
-                JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso !");
             } catch (RuntimeException ex) {
                 TransactionManager.rollback();
                 JOptionPane.showMessageDialog(rootPane, "Ocorreu um erro ao gravar os dados");

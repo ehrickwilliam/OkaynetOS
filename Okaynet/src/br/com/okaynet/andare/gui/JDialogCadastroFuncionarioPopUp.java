@@ -466,7 +466,6 @@ public class JDialogCadastroFuncionarioPopUp extends javax.swing.JDialog {
             try {
                 new DaoFuncionario().persistir(funcionario);
                 TransactionManager.commit();
-                JOptionPane.showMessageDialog(rootPane, "Registro salvo com sucesso !");
                 this.dispose();
             } catch (RuntimeException ex) {
                 TransactionManager.rollback();

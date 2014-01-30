@@ -7,8 +7,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{B6BE9652-3342-4816-889B-2FD093F1A84D}
 AppName=Okaynet OS Manager
-AppVersion=1.2
-;AppVerName=Okaynet OS Manager 1.2
+AppVersion=1.3
+;AppVerName=Okaynet OS Manager 1.3
 AppPublisher=Okaynet Informática LTDA
 AppPublisherURL=http://www.okaynet.com.br
 AppSupportURL=http://www.okaynet.com.br
