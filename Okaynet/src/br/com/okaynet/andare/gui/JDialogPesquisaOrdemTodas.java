@@ -26,8 +26,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -58,12 +56,21 @@ public class JDialogPesquisaOrdemTodas extends javax.swing.JDialog {
         calcularTotal();
     }
 
-    private void calcularTotal() {
-        double totalRecadado = 0.0;
-        for (OrdemServico o : orderns) {
-            totalRecadado += o.getValorTotal();
+    private void calcularTotal(){
+        List<OrdemServico> obterPagasFaltando = new DaoOrdemServico().obterPagasFaltando();
+        List<OrdemServico> obterPagasConcluidas = new DaoOrdemServico().obterPagasConcluidas();
+        
+        double totalRecadadoCon = 0.0;
+        double totalRecadadoDef = 0.0;
+        
+        for (OrdemServico ordemServico : obterPagasFaltando) {
+            totalRecadadoDef+= ordemServico.getValorTotal();
         }
-        jLabeltotal.setText(String.valueOf(totalRecadado));
+        
+         for (OrdemServico ordemServico : obterPagasConcluidas) {
+            totalRecadadoCon+= ordemServico.getValorTotal();
+        }
+        jLabelTotal.setText("Total arrecadado: R$ "+totalRecadadoCon+" Total a receber: R$ "+totalRecadadoDef);
     }
 
     /**
@@ -96,9 +103,7 @@ public class JDialogPesquisaOrdemTodas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableOrdemServico = new javax.swing.JTable();
         jButtonPesquisaFuncionarioCliente = new javax.swing.JButton();
-        jLabeltotal = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelTotal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuEditar = new javax.swing.JMenu();
         jMenuApagar = new javax.swing.JMenu();
@@ -271,15 +276,9 @@ public class JDialogPesquisaOrdemTodas extends javax.swing.JDialog {
         });
         getContentPane().add(jButtonPesquisaFuncionarioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 30, 30));
 
-        jLabeltotal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabeltotal.setText("50.0");
-        getContentPane().add(jLabeltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, -1, 20));
-
-        jLabel1.setText("Total Arrecadado:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, 20));
-
-        jLabel3.setText("R$ ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, -1, 20));
+        jLabelTotal.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelTotal.setText("Total Arrecadado:");
+        getContentPane().add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, 20));
 
         jMenuBar1.setMinimumSize(new java.awt.Dimension(56, 31));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(500, 31));
@@ -481,14 +480,12 @@ public class JDialogPesquisaOrdemTodas extends javax.swing.JDialog {
     private javax.swing.JComboBox jComboBoxFuncionario;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataCadastro;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataVencimento;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabeltotal;
+    private javax.swing.JLabel jLabelTotal;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenuApagar;
     private javax.swing.JMenuBar jMenuBar1;
@@ -505,7 +502,7 @@ public class JDialogPesquisaOrdemTodas extends javax.swing.JDialog {
 
     private void popularTabela() {
         TransactionManager.beginTransaction();
-        orderns = new DaoOrdemServico().obter();
+        orderns = new DaoOrdemServico().obterT();
         TransactionManager.commit();
 
         prencherOrdem();

@@ -196,13 +196,16 @@ public class JDialogPesquisaOrdemVencidas extends javax.swing.JDialog {
         jLabel2.setText("Código:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Total para receber:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, 20));
 
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("R$ ");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, 20));
 
         jLabeltotal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabeltotal.setForeground(new java.awt.Color(255, 0, 0));
         jLabeltotal.setText("50.0");
         getContentPane().add(jLabeltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, 20));
 

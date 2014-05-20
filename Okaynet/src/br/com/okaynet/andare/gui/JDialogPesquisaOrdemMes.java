@@ -81,9 +81,7 @@ public class JDialogPesquisaOrdemMes extends javax.swing.JDialog {
         jButton8 = new javax.swing.JButton();
         jTextFieldCod = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabeltotal = new javax.swing.JLabel();
+        jLabelTotal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -190,15 +188,9 @@ public class JDialogPesquisaOrdemMes extends javax.swing.JDialog {
         jLabel2.setText("Código:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jLabel1.setText("Total Arrecadado:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 20));
-
-        jLabel3.setText("R$ ");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, 20));
-
-        jLabeltotal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabeltotal.setText("50.0");
-        getContentPane().add(jLabeltotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, 20));
+        jLabelTotal.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelTotal.setText("Total Arrecadado:");
+        getContentPane().add(jLabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, 20));
 
         jMenuBar1.setMinimumSize(new java.awt.Dimension(56, 31));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(396, 31));
@@ -407,12 +399,10 @@ public class JDialogPesquisaOrdemMes extends javax.swing.JDialog {
     private javax.swing.JButton jButton8;
     private javax.swing.JComboBox jComboBoxCliente;
     private javax.swing.JComboBox jComboBoxFuncionario;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabeltotal;
+    private javax.swing.JLabel jLabelTotal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -491,11 +481,20 @@ public class JDialogPesquisaOrdemMes extends javax.swing.JDialog {
     }
     
     private void calcularTotal(){
-        double totalRecadado = 0.0;
-        for (OrdemServico o : orderns) {
-            totalRecadado+= o.getValorTotal();
+        List<OrdemServico> obterPagasFaltando = new DaoOrdemServico().obterPagasFaltandoMes();
+        List<OrdemServico> obterPagasConcluidas = new DaoOrdemServico().obterPagasConcluidasMes();
+        
+        double totalRecadadoCon = 0.0;
+        double totalRecadadoDef = 0.0;
+        
+        for (OrdemServico ordemServico : obterPagasFaltando) {
+            totalRecadadoDef+= ordemServico.getValorTotal();
         }
-        jLabeltotal.setText(String.valueOf(totalRecadado));
+        
+         for (OrdemServico ordemServico : obterPagasConcluidas) {
+            totalRecadadoCon+= ordemServico.getValorTotal();
+        }
+        jLabelTotal.setText("Total arrecadado: R$ "+totalRecadadoCon+" Total a receber: R$ "+totalRecadadoDef);
     }
 
     private void orderServicoNota() {

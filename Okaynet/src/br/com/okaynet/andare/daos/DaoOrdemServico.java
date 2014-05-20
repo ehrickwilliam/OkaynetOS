@@ -38,6 +38,17 @@ public class DaoOrdemServico extends DaoGenerics<OrdemServico> {
         return lista;
     }
     
+        public List<OrdemServico> obterT() {
+        List<OrdemServico> lista = null;
+
+
+        Query query = session.createQuery("From "
+                + alvo.getSimpleName()
+                + " ORDER BY id DESC");
+        lista = query.list();
+        return lista;
+    }
+    
         public List<OrdemServico> obterUltima() {
         List<OrdemServico> lista = null;
 
@@ -54,6 +65,42 @@ public class DaoOrdemServico extends DaoGenerics<OrdemServico> {
         Query query = session.createQuery("From "
                 + alvo.getSimpleName()
                 + " where dataVencimento < '" + dataFormatadaNormal + "' AND status = 'Aguardando Pagamento' ORDER BY id DESC");
+        lista = query.list();
+        return lista;
+    }
+    
+        public List<OrdemServico> obterPagasConcluidasMes() {
+        List<OrdemServico> lista = null;
+        Query query = session.createQuery("From "
+                + alvo.getSimpleName()
+                + " where status != 'Aguardando Pagamento' AND dataCadastro LIKE '%" + dataFormatada + "%' ORDER BY id DESC");
+        lista = query.list();
+        return lista;
+    }
+        
+                public List<OrdemServico> obterPagasFaltandoMes() {
+        List<OrdemServico> lista = null;
+        Query query = session.createQuery("From "
+                + alvo.getSimpleName()
+                + " where status = 'Aguardando Pagamento' AND dataCadastro LIKE '%" + dataFormatada + "%' ORDER BY id DESC");
+        lista = query.list();
+        return lista;
+    }
+                
+                       public List<OrdemServico> obterPagasConcluidas() {
+        List<OrdemServico> lista = null;
+        Query query = session.createQuery("From "
+                + alvo.getSimpleName()
+                + " where status != 'Aguardando Pagamento' ORDER BY id DESC");
+        lista = query.list();
+        return lista;
+    }
+        
+                public List<OrdemServico> obterPagasFaltando() {
+        List<OrdemServico> lista = null;
+        Query query = session.createQuery("From "
+                + alvo.getSimpleName()
+                + " where status = 'Aguardando Pagamento' ORDER BY id DESC");
         lista = query.list();
         return lista;
     }

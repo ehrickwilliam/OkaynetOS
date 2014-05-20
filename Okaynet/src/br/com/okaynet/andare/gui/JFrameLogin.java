@@ -114,7 +114,7 @@ public class JFrameLogin extends javax.swing.JFrame {
         jHost.setEditable(false);
         jHost.setBackground(new java.awt.Color(204, 204, 204));
         jHost.setForeground(new java.awt.Color(51, 51, 51));
-        jHost.setText("192.168.25.12");
+        jHost.setText("127.0.0.1");
         jHost.setToolTipText("");
         jHost.setBorder(null);
         jHost.setCaretColor(new java.awt.Color(153, 153, 153));
@@ -133,7 +133,7 @@ public class JFrameLogin extends javax.swing.JFrame {
         jPassword.setOpaque(false);
         getContentPane().add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 200, 20));
 
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
